@@ -49,6 +49,7 @@ const editUser = (req, res, next) => {
         .catch(err => next(err))
 }
 
+
 const deleteUser = (req, res, next) => {
 
     const { id } = req.params

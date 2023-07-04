@@ -54,9 +54,10 @@ const editNote = (req, res, next) => {
 
     const { id: noteId } = req.params
     const { title, body, image, reminder, collaborators, tag } = req.body
+    const updatedNote = { title, body, image, reminder, collaborators, tag }
 
     Note
-        .findByIdAndUpdate(noteId, { title, body, image, reminder, collaborators, tag }, { new: true })
+        .findByIdAndUpdate(noteId, updatedNote, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
