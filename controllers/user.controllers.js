@@ -1,6 +1,6 @@
 const User = require('./../models/User.model')
-const Note = require('./../models/Note.model')
-const Tag = require('./../models/Tag.model')
+// const Note = require('./../models/Note.model')
+// const Tag = require('./../models/Tag.model')
 
 const { response } = require('express')
 
@@ -10,6 +10,7 @@ const getAllUsers = (req, res, next) => {
 
     User
         .find()
+        .populate()
         .select({ email: 1, username: 1, firstName: 1, lastName: 1, avatar: 1, notes: 1, tags: 1 })
         .sort({ username: 1 })
         .then(response => res.json(response))
@@ -48,9 +49,21 @@ const editUser = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const deleteUser = (req, res, next) => {
+
+    const { id } = req.params
+
+    User
+        .findByIdAndDelete(id)
+        .then(() => res.sendStatus(204))
+        .catch(err => next(err))
+
+}
+
 
 module.exports = {
     getAllUsers,
     getOneUser,
-    editUser
+    editUser,
+    deleteUser
 }

@@ -6,7 +6,7 @@ const noteSchema = new Schema(
             type: String,
             required: [true, 'El título de la nota es obligario']
         },
-        text: {
+        body: {
             type: String,
             required: [true, 'Añadir texto es obligatorio']
         },
@@ -35,14 +35,15 @@ const noteSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User'
         },
-        collaborators: {
+        collaborators: [{
             type: Schema.Types.ObjectId,
             ref: 'User'
-        },
-        tag: {
+        }],
+        tag: [{
             type: Schema.Types.ObjectId,
-            ref: "Tag"
-        }
+            ref: "Tag",
+            required: false
+        }]
 
     },
     {
