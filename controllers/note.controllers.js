@@ -11,7 +11,7 @@ const getAllNotes = (req, res, next) => {
     Note
         .find()
         .select({ title: 1, body: 1, datePosted: 1, dateModified: 1, reminder: 1, reminder: 1, owner: 1, collaborators: 1, tag: 1 })
-        .sort({ title: 1 })
+        .sort({ datePosted: -1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
