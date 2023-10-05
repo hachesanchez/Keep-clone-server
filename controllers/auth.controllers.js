@@ -63,7 +63,7 @@ const login = (req, res, next) => {
 
                 const { username, firstName, lastName, avatar, _id } = foundUser;
 
-                const payload = { username, firstName, lastName, avatar, _id }
+                const payload = { username, firstName, lastName, avatar, _id, email }
 
                 const authToken = jwt.sign(
                     payload,
